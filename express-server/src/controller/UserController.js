@@ -8,10 +8,11 @@ exports.create = function(req, res, next) {
   });
 
   user.save(error => {
-    if (error) res.status(500).send(error);
-    res.status(201).json({
-      message: 'User created successfully'
-    });
+    res.status(500).send('something when wrong')
+    // if (error) res.status(500).send(error);
+    // res.status(201).json({
+    //   message: 'User created successfully'
+    // });
   });
 }
 

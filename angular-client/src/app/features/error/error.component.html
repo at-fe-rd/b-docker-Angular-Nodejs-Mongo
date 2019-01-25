@@ -1,0 +1,14 @@
+<main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+  <app-breadcrumb [itemName]="error?.code"></app-breadcrumb>
+  <div [loading]="isInit" class="main-content">
+    <div class="mt-4">
+      <h1>{{error?.code}}</h1>
+      <h3 class="font-bold">{{ error?.title | translate }}</h3>
+      <div class="error-desc">
+        <p>{{ error?.content | translate }}</p>
+        <a [routerLink]="['/']" class="btn btn-outline-info">Go to home</a>
+      </div>
+    </div>
+  </div>
+</main>
+

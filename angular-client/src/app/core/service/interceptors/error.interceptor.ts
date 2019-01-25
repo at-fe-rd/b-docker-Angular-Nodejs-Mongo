@@ -11,12 +11,14 @@ import {
 } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private ns: NotificationService
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -36,11 +38,17 @@ export class ErrorInterceptor implements HttpInterceptor {
   errorHandler(err: any) {
     if (err instanceof HttpErrorResponse) {
       if (err.status === 401) {
-        // remove current token
-        // update logger
-        // and redirect to the login route
-        // basically what logout does
-        this.auth.logout();
+        this.auth.logout(true);
+      } else if (err.status === 404) {
+        // Not found
+        this.auth.redirectTo('/error/404');
+      } else if (err.status === 500) {
+        const type = 'danger';
+        const config: any = {
+          type: type,
+          msg: `Error 500`
+        };
+        this.ns.message(config);
       }
     }
 

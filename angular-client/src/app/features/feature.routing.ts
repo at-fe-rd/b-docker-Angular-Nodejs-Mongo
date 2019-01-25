@@ -15,6 +15,10 @@ export const featureRoutes: Routes = [
       ...serviceRoutes,
       ...utilitiesRoutes,
       {
+        path: 'error',
+        loadChildren: 'app/features/error/error.module#ErrorModule',
+      },
+      {
         path: '**',
         redirectTo: 'dashboard',
         pathMatch: 'full'

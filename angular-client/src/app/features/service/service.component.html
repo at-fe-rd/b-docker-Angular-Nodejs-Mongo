@@ -76,6 +76,13 @@
         </div>
         <button *ngIf="!team" type="button" class="btn btn-outline-info" (click)="addUser()">Add</button>
       </div>
+      <div class="mt-4">
+        <h4>Server error</h4>
+        <p>By clicking the following buttons, browser will perform a specific request that cause the error</p>
+        <button type="button" class="btn btn-outline-info" (click)="error500()">500</button>
+        <button type="button" class="btn btn-outline-info" (click)="error401()">401</button>
+        <button type="button" class="btn btn-outline-info" (click)="error404()">404</button>
+      </div>
     </ng-template>
   </div>
 </main>

@@ -34,5 +34,31 @@
     "service": "Services",
     "utilities": "Utilities"
   },
-  "sitename": "Boilerplate Angular"
+  "sitename": "Boilerplate Angular",
+  "error": {
+    "204": {
+      "title": "Record not found",
+      "content": "Record not found"
+    },
+    "401": {
+      "title": "Access denied",
+      "content": "Access denied"
+    },
+    "403": {
+      "title": "Permission denied",
+      "content": "Permission denied"
+    },
+    "404": {
+      "title": "Page not found",
+      "content": "Page not found"
+    },
+    "440": {
+      "title": "Login timeout",
+      "content": "Login timeout"
+    },
+    "500": {
+      "title": "Internal server error",
+      "content": "Internal server error occurred"
+    }
+  }
 }

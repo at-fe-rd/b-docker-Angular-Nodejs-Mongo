@@ -44,7 +44,10 @@ export class AuthService {
 
     /**
      * Replace `of()` with an actual login request
-     * ex: this.httpClient.post(`${API_BASE_URL}${API_PATH.login}`, loginData)
+     * ex:
+     * ```js
+     * this.httpClient.post(`${API_BASE_URL}${API_PATH.login}`, loginData)
+     * ```
      */
     return of({
       // tslint:disable-next-line:max-line-length
@@ -59,10 +62,10 @@ export class AuthService {
     );
   }
 
-  logout() {
+  logout(preserveRoute: boolean = false) {
     localStorage.removeItem('token');
     this.logger.next(false);
-    this.redirectToLogin();
+    this.redirectToLogin(preserveRoute ? this.router.url : '/');
   }
 
   isAuthenticated() {
@@ -122,4 +125,7 @@ export class AuthService {
     this.router.navigate(['/auth/login']);
   }
 
+  redirectTo(path: string) {
+    this.router.navigate([path]);
+  }
 }

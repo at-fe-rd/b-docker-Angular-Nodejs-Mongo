@@ -82,4 +82,42 @@ export class ServiceComponent implements OnInit {
     this.team = null;
   }
 
+
+  error500() {
+    this.serviceService.testError('500').subscribe(
+      (data) => {
+
+      }, (err: any) => {
+        //
+      }, () => {
+        //
+      }
+    );
+
+  }
+
+  error401() {
+    this.serviceService.testError('401').subscribe(
+      (data) => {
+
+      }, (err: any) => {
+        //
+      }, () => {
+        //
+      }
+    );
+  }
+
+  error404() {
+    this.serviceService.testError('404').subscribe(
+      (data) => {
+
+      }, (err: any) => {
+        //
+      }, () => {
+        //
+      }
+    );
+  }
+
 }

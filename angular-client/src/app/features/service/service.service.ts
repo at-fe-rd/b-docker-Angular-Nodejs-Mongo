@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { API_BASE_URL } from '../../core/service/config/api.config';
 
 const API_PATH = {
   team: 'fe.json',
-  users: 'users'
+  users: 'users',
+  error: {
+    err401: 'error/401',
+    err404: 'error/404',
+    err500: 'error/500'
+  },
 }
 
 export interface User {
@@ -44,5 +49,16 @@ export class ServiceService {
     return this.httpClient.get(`${API_BASE_URL}/${API_PATH.users}`).pipe(
       map((d: any) => d || {})
     );
+  }
+
+  testError(code: string): Observable<any> {
+    switch (code) {
+      case '500':
+        return this.httpClient.get(`${API_BASE_URL}/${API_PATH.error.err500}`);
+      case '401':
+        return this.httpClient.get(`${API_BASE_URL}/${API_PATH.error.err401}`);
+      case '404':
+        return this.httpClient.get(`${API_BASE_URL}/${API_PATH.error.err404}`);
+    }
   }
 }
