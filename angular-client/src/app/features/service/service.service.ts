@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { API_BASE_URL } from '../../core/service/config/api.config';
-
-const API_PATH = {
-  team: 'fe.json',
-  users: 'users'
-}
+import { END_POINT } from '../../core/service/config/api.config';
+import { ApiService } from '../../core/service/api/api.service';
 
 export interface User {
   name: string;
@@ -25,23 +20,23 @@ export interface Team {
 export class ServiceService {
 
   constructor(
-    private httpClient: HttpClient
+    private api: ApiService
   ) { }
 
   getTeam(): Observable<Team> {
-    return this.httpClient.get(`${API_BASE_URL}/${API_PATH.team}`).pipe(
+    return this.api.get(END_POINT.team).pipe(
       map((d: any) => d || {})
     );
   }
 
   addUser(user: User): Observable<User> {
-    return this.httpClient.post(`${API_BASE_URL}/${API_PATH.users}`, user).pipe(
+    return this.api.post(END_POINT.users, user).pipe(
       map((d: any) => d || {})
     );
   }
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get(`${API_BASE_URL}/${API_PATH.users}`).pipe(
+    return this.api.get(END_POINT.users).pipe(
       map((d: any) => d || {})
     );
   }
