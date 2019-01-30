@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { END_POINT } from '../../core/service/config/api.config';
-import { ApiService } from '../../core/service/api/api.service';
+import { ApiService, END_POINT } from '../../core/service/api/api.service';
 
 export interface User {
   name: string;
